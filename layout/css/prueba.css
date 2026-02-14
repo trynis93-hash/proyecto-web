@@ -1,0 +1,201 @@
+/* Corrección de errores básicos */
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #1d1c1c;
+}
+/* Contenedor principal para Sidebar + Videos */
+.main-layout {
+    display: flex; /* Pone el menú y los videos uno al lado del otro */
+    margin-top: 80px; /* Espacio para el encabezado */
+}
+
+/* Menú lateral fijo */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: sticky; /* Se queda pegado al hacer scroll */
+    top: 80px;
+    padding: 10px;
+    background-color: #e78282;
+}
+
+/* Ajuste de las tarjetas de video */
+.video-card {
+    display: flex;
+    flex-direction: column;
+    background: #f38383;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.video-card:hover {
+    transform: scale(1.02);
+}
+
+.imagen {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Formato estándar de video */
+    object-fit: cover;
+    background-color: #333;
+}
+
+/* Corrección de tu buscador */
+.mic-btn {
+    background-color: cadetblue;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+}
+.encabezado {
+    background-color: #333;
+    color: rgb(218, 162, 162);
+    display: flex;
+    justify-content: flex-start; /* Alinea los filtros a la izquierda */
+    gap: 300px;
+    padding: 10px 20px;
+    position: fixed; /* Lo mantiene siempre arriba */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2000; /* Asegura que esté por encima de todo */
+    margin: 0; /* Quitamos el margin de 20px que tenías antes */
+    box-sizing: border-box;
+}
+
+/* Esto aplica a todo el encabezado */
+.encabezado ::selection {
+    background-color: #e77171; /* Fondo rojo al seleccionar */
+    color: #130101; /* Texto blanco al seleccionar */
+}
+
+.todos::first-letter {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #ffffff; /* Resalta la primera letra en blanco */
+    text-transform: uppercase;
+}
+
+/* Estilo base para los links del menú lateral */
+.sidebar .subtitulos {
+    position: relative; /* Necesario para que el pseudo-elemento se posicione respecto a esto */
+    padding-left: 25px; /* Espacio para el pseudo-elemento */
+    cursor: pointer;
+    transition: color 0.3s;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: x-large;
+    border-bottom: #db5252 1px solid;
+}
+.sidebar .subtitulos::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: calc(100%);
+    height: 3px;
+    background-color: #201e1e;
+    transform: scaleX(0); /* En lugar de width 0, usamos escala */
+    transition: transform 0.3s ease;
+    transform-origin: center; /* Crece desde el centro */
+}
+
+.sidebar .subtitulos:hover::after {
+    transform: scaleX(1); /* Se estira a su tamaño original */
+}
+
+.sidebar .subtitulos::before {
+    content: '';
+    position: absolute;
+    left: -15px; /* Empieza fuera de vista */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    background-color: #131010;
+    border-radius: 2px; /* Un cuadrado pequeño o círculo */
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto rebote */
+}
+
+/* Cuando pasas el mouse por el texto, el pseudo-elemento reacciona */
+.sidebar .subtitulos:hover::before {
+    left: 5px; /* Se mueve a su posición final */
+    opacity: 1;
+    transform: translateY(-50%) rotate(45deg); /* Gira un poco para estilo */
+}
+
+/* Pseudo-elemento: Una línea decorativa al final de cada sección */
+.sidebar .contenedor::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: rgba(0,0,0,0.1);
+    margin-top: 15px;
+}
+
+.sidebar {
+    width: 240px;
+    height: calc(100vh - 60px); /* Resta el alto del encabezado */
+    position: sticky;
+    top: 60px;
+    background-color: rgb(253, 166, 166);
+    overflow-y: auto; /* Permite scroll interno si el menú es muy largo */
+    padding: 15px;
+    border-right: 3px solid #f5ebeb;
+    font-size: large;
+}
+
+.imagenes {
+    flex: 1;
+    display: grid; /* Cambiamos flex por grid */
+    padding: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Crea columnas dinámicas */
+    gap: 15px;
+    margin-bottom: 100px; /* Espacio para el buscador inferior */
+}
+/* 1. Preparamos la imagen para la transición */
+.imagen {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    transition: transform 0.4s ease, filter 0.3s ease; /* Transición suave */
+}
+
+/* 2. Cuando pasamos el mouse por la TARJETA, la IMAGEN reacciona */
+.video-card:hover .imagen {
+    transform: scale(1.05); /* Zoom sutil */
+    filter: saturate(1.5); /* Hace los colores más vivos */
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.5); /* Sombra interna */
+}
+/* Creamos el texto extra oculto */
+.video-card .video-titulo::after {
+    content: ' • Ver ahora';
+    opacity: 0;
+    font-size: 0.8rem;
+    font-weight: bold;
+    transition: opacity 0.3s ease;
+}
+
+/* Lo mostramos al hacer hover */
+.video-card:hover .video-titulo::after {
+    opacity: 1;
+}
+/* Seleccionamos el texto solo cuando está dentro de una video-card */
+.video-card .video-titulo {
+    padding: 10px;
+    margin: 0;
+    font-size: 1rem;
+    color: #333;
+    transition: all 0.3s ease; /* Suaviza el cambio de color y posición */
+}
+
+/* Efecto al pasar el mouse por la tarjeta */
+.video-card:hover .video-titulo {
+    color: #e61010; /* Rojo YouTube */
+    transform: translateX(5px); /* Se desplaza ligeramente a la derecha */
+}
