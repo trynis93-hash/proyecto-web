@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="layout/css/prueba.css">
+    <title>YouTube Layout</title>
+</head>
+<body>
+    <header class="topbar">
+        <div class="topbar-left">
+            <button class="menu-btn" aria-label="Menú">☰</button>
+            <a href="#" class="logo">
+                <span class="logo-icon">▶️</span>
+                <span class="logo-text">YouTube</span>
+            </a>
+        </div>
+
+        <div class="topbar-search">
+            <form class="search-form">
+                <input type="text" placeholder="Buscar" class="search-input" />
+                <button type="submit" class="search-btn">🔍</button>
+            </form>
+            <button class="mic-btn" aria-label="Buscar por voz">🎤</button>
+        </div>
+
+        <div class="topbar-right">
+            <button class="btn" aria-label="Crear">videos</button>
+            <button class="btn" aria-label="Aplicaciones">apps</button>
+            <button class="btn" aria-label="Notificaciones">notificaciones</button>
+            <button class="avatar-btn" aria-label="Cuenta">US</button>
+        </div>
+    </header>
+
+    <div class="backdrop"></div>
+
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-item">
+                    <span class="icon">🏠</span>
+                    <span>Inicio</span>
+                </div>
+                <div class="sidebar-item">
+                    <span class="icon">🔎</span>
+                    <span>Explorar</span>
+                </div>
+                <div class="sidebar-item">
+                    <span class="icon">📺</span>
+                    <span>Suscripciones</span>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h2>Biblioteca</h2>
+                <div class="sidebar-item">
+                    <span class="icon">⏱️</span>
+                    <span>Historial</span>
+                </div>
+                <div class="sidebar-item">
+                    <span class="icon">❤️</span>
+                    <span>Videos que te gustan</span>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h2>Explorar</h2>
+                <div class="sidebar-item">
+                    <span class="icon">🎵</span>
+                    <span>Música</span>
+                </div>
+                <div class="sidebar-item">
+                    <span class="icon">🎮</span>
+                    <span>Gaming</span>
+                </div>
+                <div class="sidebar-item">
+                    <span class="icon">🎬</span>
+                    <span>Películas</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="videos">
+            <div class="video-grid">
+                <div class="video-card">
+                    <img src="imagenes/Hollow-Knight.png" alt="Gameplay Hollow Knight" class="video-thumb" />
+                    <div class="video-info">
+                        <div class="video-meta">
+                            <p class="video-title">Gameplay de Hollow Knight</p>
+                            <p class="video-channel">Canal Gamer · 123 K vistas · hace 2 días</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <img src="imagenes/noticia.png" alt="Noticia" class="video-thumb" />
+                    <div class="video-info">
+                        <div class="video-meta">
+                            <p class="video-title">Resumen de noticias</p>
+                            <p class="video-channel">Canal Noticias · 54 K vistas · hace 1 día</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <img src="imagenes/musica2.png" alt="Música rock" class="video-thumb" />
+                    <div class="video-info">
+                        <div class="video-meta">
+                            <p class="video-title">Playlist Rock 2026</p>
+                            <p class="video-channel">Top Hits · 4.5 M vistas · hace 1 semana</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <img src="imagenes/podcast-chatting.png" alt="Podcast" class="video-thumb" />
+                    <div class="video-info">
+                        <div class="video-meta">
+                            <p class="video-title">Podcast de historia</p>
+                            <p class="video-channel">Historia Hoy · 78 K vistas · hace 3 días</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <img src="imagenes/hollow.png" alt="Hollow" class="video-thumb" />
+                    <div class="video-info">
+                        <div class="video-meta">
+                            <p class="video-title">Hollow Silsonk - Speedrun</p>
+                            <p class="video-channel">Pro Player · 210 K vistas · hace 4 días</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <img src="imagenes/noticia2.png" alt="Caracol" class="video-thumb" />
+                    <div class="video-info">
+                        <div class="video-meta">
+                            <p class="video-title">Caracol Noticias</p>
+                            <p class="video-channel">Caracol TV · 390 K vistas · hace 5 días</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <img src="imagenes/musica.png" alt="Música pop" class="video-thumb" />
+                    <div class="video-info">
+                        <div class="video-meta">
+                            <p class="video-title">Pop Latino 2026</p>
+                            <p class="video-channel">Música Top · 1.2 M vistas · hace 2 semanas</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <img src="imagenes/Podcast-Symbol.png" alt="Podcast ciencia" class="video-thumb" />
+                    <div class="video-info">
+                        <div class="video-meta">
+                            <p class="video-title">Podcast de ciencia</p>
+                            <p class="video-channel">Ciencia Fácil · 98 K vistas · hace 6 días</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const menuBtn = document.querySelector('.menu-btn');
+        const backdrop = document.querySelector('.backdrop');
+
+        const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
+
+        function updateButton(open) {
+            menuBtn.textContent = open ? '☰' : '☰';
+            menuBtn.setAttribute('aria-label', open ? 'Cerrar menú': 'Menú');
+        }
+
+        function setMenuState({ collapsed = false, open = false } = {}) {
+            document.body.classList.toggle('sidebar-collapsed', collapsed);
+            document.body.classList.toggle('sidebar-open', open);
+
+            const isOpen = isMobile() ? open : !collapsed;
+            updateButton(isOpen);
+        }
+
+        function toggleMenu() {
+            if (isMobile()) {
+                const open = !document.body.classList.contains('sidebar-open');
+                setMenuState({ open });
+            } else {
+                const collapsed = !document.body.classList.contains('sidebar-collapsed');
+                setMenuState({ collapsed });
+            }
+        }
+
+        menuBtn?.addEventListener('click', toggleMenu);
+        backdrop?.addEventListener('click', () => setMenuState({ open: false }));
+
+        window.addEventListener('resize', () => {
+            if (isMobile()) {
+                setMenuState({ open: document.body.classList.contains('sidebar-open') });
+            } else {
+                setMenuState({ collapsed: document.body.classList.contains('sidebar-collapsed') });
+            }
+        });
+    </script>
+</body>
+</html>
