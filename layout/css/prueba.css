@@ -1,201 +1,618 @@
-/* Corrección de errores básicos */
-html, body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #1d1c1c;
-}
-/* Contenedor principal para Sidebar + Videos */
-.main-layout {
-    display: flex; /* Pone el menú y los videos uno al lado del otro */
-    margin-top: 80px; /* Espacio para el encabezado */
+/* Reset global */
+* {
+  box-sizing: border-box;
 }
 
-/* Menú lateral fijo */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  background: #0f0f0f;
+  color: #fff;
+  font-size: 16px;
+}
+
+a {
+  color: rgb(96, 15, 15);
+  text-decoration: none;
+}
+
+/* ---------- Top bar ---------- */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  background: #212121;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 1000;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.menu-btn {
+  border: none;
+  background: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.logo-icon {
+  font-size: 28px;
+}
+
+.topbar-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+  max-width: 600px;
+  gap: 8px;
+  margin: 0 20px;
+}
+
+.search-form {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.search-input {
+  flex: 1;
+  padding: 8px 16px;
+  border: none;
+  font-size: 14px;
+  background: transparent;
+  color: #fff;
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.search-btn {
+  width: 56px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.search-btn:hover {
+  color: #fff;
+}
+
+.mic-btn {
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mic-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.topbar-right {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 8px 16px;
+  color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+}
+
+.btn:hover {
+  color: #fff;
+}
+
+.avatar-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: #f00;
+  cursor: pointer;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.avatar-btn:hover {
+  background: #cc0000;
+}
+
+/* ---------- Layout ---------- */
+.app-layout {
+  display: flex;
+  margin-top: 56px;
+  margin-left: 240px;
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar-collapsed .app-layout {
+  margin-left: 64px;
+}
+
 .sidebar {
-    width: 250px;
-    height: 100vh;
-    position: sticky; /* Se queda pegado al hacer scroll */
-    top: 80px;
-    padding: 10px;
-    background-color: #e78282;
+  width: 240px;
+  padding: 12px 0;
+  background: #000000;
+  border-right: 1px solid rgb(249, 245, 245);
+  position: fixed;
+  left: 0;
+  top: 56px;
+  z-index: 950;
+  overflow-y: auto;
+  transition: width 0.3s ease;
+  height: calc(100vh - 56px);
 }
 
-/* Ajuste de las tarjetas de video */
+.sidebar-collapsed .sidebar {
+  width: 64px;
+  overflow: hidden;
+}
+
+.sidebar-collapsed .sidebar-section h2,
+.sidebar-collapsed .sidebar-item span:not(.icon) {
+  display: none;
+}
+
+.sidebar-collapsed .sidebar-item {
+  justify-content: center;
+}
+
+.sidebar-section {
+  padding: 0 12px;
+  margin-bottom: 12px;
+}
+
+.sidebar-section h2 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgb(252, 252, 252);
+  padding: 0 16px;
+  margin-bottom: 8px;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  margin: 0 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 14px;
+  color: rgb(255, 255, 255);
+}
+
+.sidebar-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.sidebar-item .icon {
+  font-size: 24px;
+  min-width: 24px;
+}
+
+/* ---------- Chips ---------- */
+.chips-container {
+  display: flex;
+  gap: 12px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chips-container::-webkit-scrollbar {
+  height: 4px;
+}
+
+.chips-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chips-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.chip:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.chip.active {
+  background: #fff;
+  color: #030303;
+  border-color: #fff;
+}
+
+.chip.active:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* ---------- Videos ---------- */
+.videos {
+  flex: 1;
+  padding: 16px;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
 .video-card {
-    display: flex;
-    flex-direction: column;
-    background: #f38383;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.2s;
+  background: transparent;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .video-card:hover {
-    transform: scale(1.02);
+  transform: translateY(-4px);
 }
 
-.imagen {
-    width: 100%;
-    aspect-ratio: 16 / 9; /* Formato estándar de video */
-    object-fit: cover;
-    background-color: #333;
+.video-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: #333;
+  border-radius: 12px;
 }
 
-/* Corrección de tu buscador */
-.mic-btn {
-    background-color: cadetblue;
-    border: none;
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    cursor: pointer;
-}
-.encabezado {
-    background-color: #333;
-    color: rgb(218, 162, 162);
-    display: flex;
-    justify-content: flex-start; /* Alinea los filtros a la izquierda */
-    gap: 300px;
-    padding: 10px 20px;
-    position: fixed; /* Lo mantiene siempre arriba */
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 2000; /* Asegura que esté por encima de todo */
-    margin: 0; /* Quitamos el margin de 20px que tenías antes */
-    box-sizing: border-box;
+.video-info {
+  padding: 12px 0;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
 }
 
-/* Esto aplica a todo el encabezado */
-.encabezado ::selection {
-    background-color: #e77171; /* Fondo rojo al seleccionar */
-    color: #130101; /* Texto blanco al seleccionar */
+.channel-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
 }
 
-.todos::first-letter {
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #ffffff; /* Resalta la primera letra en blanco */
-    text-transform: uppercase;
+.video-meta {
+  flex: 1;
 }
 
-/* Estilo base para los links del menú lateral */
-.sidebar .subtitulos {
-    position: relative; /* Necesario para que el pseudo-elemento se posicione respecto a esto */
-    padding-left: 25px; /* Espacio para el pseudo-elemento */
-    cursor: pointer;
-    transition: color 0.3s;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: x-large;
-    border-bottom: #db5252 1px solid;
-}
-.sidebar .subtitulos::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: calc(100%);
-    height: 3px;
-    background-color: #201e1e;
-    transform: scaleX(0); /* En lugar de width 0, usamos escala */
-    transition: transform 0.3s ease;
-    transform-origin: center; /* Crece desde el centro */
+.video-title {
+  font-size: 14px;
+  margin: 0 0 8px;
+  line-height: 1.3;
+  color: #fff;
+  font-weight: 500;
 }
 
-.sidebar .subtitulos:hover::after {
-    transform: scaleX(1); /* Se estira a su tamaño original */
+.video-channel {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
 }
 
-.sidebar .subtitulos::before {
-    content: '';
-    position: absolute;
-    left: -15px; /* Empieza fuera de vista */
-    top: 50%;
-    transform: translateY(-50%);
-    width: 10px;
-    height: 10px;
-    background-color: #131010;
-    border-radius: 2px; /* Un cuadrado pequeño o círculo */
-    opacity: 0;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto rebote */
+/* ---------- Backdrop ---------- */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 900;
+  display: none;
 }
 
-/* Cuando pasas el mouse por el texto, el pseudo-elemento reacciona */
-.sidebar .subtitulos:hover::before {
-    left: 5px; /* Se mueve a su posición final */
-    opacity: 1;
-    transform: translateY(-50%) rotate(45deg); /* Gira un poco para estilo */
+.sidebar-open .backdrop {
+  display: block;
 }
 
-/* Pseudo-elemento: Una línea decorativa al final de cada sección */
-.sidebar .contenedor::after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 1px;
-    background: rgba(0,0,0,0.1);
-    margin-top: 15px;
+/* ---------- Responsive ---------- */
+
+/* Tablets (768px - 1024px) */
+@media (max-width: 1024px) {
+  .video-grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  }
 }
 
-.sidebar {
+/* Tablets/Mobile (hasta 768px) */
+@media (max-width: 768px) {
+  .app-layout {
+    margin-left: 0;
+  }
+
+  .sidebar {
     width: 240px;
-    height: calc(100vh - 60px); /* Resta el alto del encabezado */
-    position: sticky;
-    top: 60px;
-    background-color: rgb(253, 166, 166);
-    overflow-y: auto; /* Permite scroll interno si el menú es muy largo */
-    padding: 15px;
-    border-right: 3px solid #f5ebeb;
-    font-size: large;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar-open .sidebar {
+    transform: translateX(0);
+  }
+
+  .topbar {
+    padding: 0 12px;
+  }
+
+  .topbar-search {
+    max-width: 300px;
+    margin: 0 8px;
+  }
+
+  .search-form {
+    max-width: 100%;
+  }
+
+  .search-btn {
+    width: 40px;
+  }
+
+  .btn {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+
+  .avatar-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .topbar-right {
+    gap: 8px;
+  }
+
+  .videos {
+    padding: 12px 8px;
+    overflow-y: auto;
+  }
+
+  .chips-container {
+    padding: 8px 8px;
+    margin-bottom: 12px;
+    gap: 8px;
+  }
+
+  .video-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .video-info {
+    padding: 8px 0;
+  }
+
+  .channel-avatar {
+    width: 36px;
+    height: 36px;
+  }
+
+  .video-title {
+    font-size: 13px;
+  }
+
+  .video-channel {
+    font-size: 11px;
+  }
 }
 
-.imagenes {
-    flex: 1;
-    display: grid; /* Cambiamos flex por grid */
-    padding: 20px;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Crea columnas dinámicas */
-    gap: 15px;
-    margin-bottom: 100px; /* Espacio para el buscador inferior */
-}
-/* 1. Preparamos la imagen para la transición */
-.imagen {
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    object-fit: cover;
-    transition: transform 0.4s ease, filter 0.3s ease; /* Transición suave */
+/* Móviles pequeños (hasta 480px) */
+@media (max-width: 480px) {
+  .topbar {
+    padding: 0 8px;
+    height: 48px;
+  }
+
+  .menu-btn {
+    font-size: 20px;
+    padding: 6px;
+  }
+
+  .logo-icon {
+    font-size: 24px;
+  }
+
+  .logo {
+    font-size: 16px;
+    gap: 4px;
+  }
+
+  .topbar-left {
+    gap: 8px;
+  }
+
+  .topbar-search {
+    max-width: 200px;
+    margin: 0 4px;
+  }
+
+  .search-form {
+    border-radius: 20px;
+  }
+
+  .search-input {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  .search-btn {
+    width: 36px;
+    font-size: 16px;
+  }
+
+  .mic-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .btn {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+
+  .avatar-btn {
+    width: 24px;
+    height: 24px;
+    font-size: 9px;
+  }
+
+  .topbar-right {
+    gap: 8px;
+  }
+
+  /* Sidebar */
+  .app-layout {
+    margin-top: 48px;
+  }
+
+  .sidebar {
+    top: 48px;
+    width: 200px;
+  }
+
+  .sidebar-section {
+    margin-bottom: 8px;
+  }
+
+  .sidebar-item {
+    font-size: 13px;
+    gap: 8px;
+    padding: 6px 8px;
+    margin: 0 8px;
+  }
+
+  .sidebar-item .icon {
+    font-size: 20px;
+  }
+
+  /* Chips */
+  .videos {
+    padding: 8px 6px;
+  }
+
+  .chips-container {
+    padding: 6px 6px;
+    margin-bottom: 8px;
+    gap: 6px;
+  }
+
+  .chip {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  /* Videos */
+  .video-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .video-thumb {
+    border-radius: 8px;
+  }
+
+  .video-info {
+    padding: 6px 0;
+  }
+
+  .channel-avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .video-title {
+    font-size: 12px;
+    margin: 0 0 4px;
+  }
+
+  .video-channel {
+    font-size: 10px;
+  }
 }
 
-/* 2. Cuando pasamos el mouse por la TARJETA, la IMAGEN reacciona */
-.video-card:hover .imagen {
-    transform: scale(1.05); /* Zoom sutil */
-    filter: saturate(1.5); /* Hace los colores más vivos */
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.5); /* Sombra interna */
-}
-/* Creamos el texto extra oculto */
-.video-card .video-titulo::after {
-    content: ' • Ver ahora';
-    opacity: 0;
-    font-size: 0.8rem;
-    font-weight: bold;
-    transition: opacity 0.3s ease;
-}
-
-/* Lo mostramos al hacer hover */
-.video-card:hover .video-titulo::after {
-    opacity: 1;
-}
-/* Seleccionamos el texto solo cuando está dentro de una video-card */
-.video-card .video-titulo {
-    padding: 10px;
-    margin: 0;
-    font-size: 1rem;
-    color: #333;
-    transition: all 0.3s ease; /* Suaviza el cambio de color y posición */
-}
-
-/* Efecto al pasar el mouse por la tarjeta */
-.video-card:hover .video-titulo {
-    color: #e61010; /* Rojo YouTube */
-    transform: translateX(5px); /* Se desplaza ligeramente a la derecha */
-}
