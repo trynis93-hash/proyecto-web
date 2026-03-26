@@ -68,11 +68,11 @@ a {
 }
 
 .logo-icon {
-  height: 24px;
-  width: auto;
-  max-width: 80px;
+  height: 20px;
+  max-width: 60px;
   object-fit: contain;
   display: block;
+  flex-shrink: 0;
 }
 
 .topbar-search {
