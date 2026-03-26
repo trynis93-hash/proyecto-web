@@ -68,8 +68,11 @@ a {
 }
 
 .logo-icon {
-  font-size: 28px;
-  color: rgb(236, 11, 11);
+  height: 32px;
+  width: auto;
+  max-width: 120px;
+  object-fit: contain;
+  display: block;
 }
 
 .topbar-search {
