@@ -67,9 +67,8 @@ a {
   color: #fff;
 }
 
-.logo-icon {
-  height: 60px;
-  max-width: 60px;
+.logo-icon {
+  max-width: 35px;
   object-fit: contain;
   display: block;
   flex-shrink: 0;
