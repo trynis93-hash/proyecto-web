@@ -68,8 +68,8 @@ a {
 }
 
 .logo-icon {
-  height: 1em;
-  max-width: 1em;
+  height: 30em;
+  max-width: 30em;
   object-fit: contain;
   display: block;
   flex-shrink: 0;
